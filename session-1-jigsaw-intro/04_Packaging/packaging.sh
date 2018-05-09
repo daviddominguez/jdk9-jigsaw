@@ -11,16 +11,19 @@ mkdir -p mlib              # this must be created in order for the jar commands 
 echo ""
 echo "${info} *** Creating module org.astro as a package file (jar) *** ${normal}"
 jar --create \
-    [parameter to specify file, in the mlib folder, specify module name, with @1.0 and .jar extension*] \
-	[parameter to specify module, set it to version 1.0] \
+    --file=mlib/org.astro@1.0.jar \
+    --module-version=1.0 \
 	-C mods/org.astro .
+    #[parameter to specify file, in the mlib folder, specify module name, with @1.0 and .jar extension*] \
+	#[parameter to specify module, set it to version 1.0] \
 
 echo ""
 echo "${info} *** Creating module com.greetings as a package file (jar) *** ${normal}"
 jar --create \
-    --file mlib/com.greetings.jar \
-	[parameter to specify the main class, and name the fully qualified main class] \
+    --file=mlib/com.greetings.jar \
+	--main-class=com.greetings.Main \
 	-C mods/com.greetings .
+	#[parameter to specify the main class, and name the fully qualified main class] \
 
 echo ""
 echo "${info} *** Displaying the contents (package files created) of the 'mlib' folder *** ${normal}"
@@ -28,26 +31,28 @@ runTree mlib
 
 echo ""
 echo "${info} *** Printing module description for org.astro as recorded in the module-info.class file in the package (jar) *** ${normal}"
-jar [verbose mode] \
-    [module description param] \
+jar --describe-module \
+    --verbose \
     --file=mlib/org.astro@1.0.jar
+    #[verbose mode] \
+    #[module description param] \
 
     echo ""
 echo "${info} *** Displaying contents of the module package org.astro@1.0 *** ${normal}"
-jar [verbose mode] \
-    [list contents of jar param] \
+jar --list \
+    --verbose \
     --file=mlib/org.astro@1.0.jar
 
 echo ""
 echo "${info} *** Printing module description for com.greetings as recorded in the module-info.class file in the package (jar) *** ${normal}"
-jar [verbose mode] \
-    [module description param] \
+jar --describe-module \
+    --verbose \
     --file=mlib/com.greetings.jar
 
     echo ""
 echo "${info} *** Displaying contents of the module package com.greetings *** ${normal}"
-jar [verbose mode] \
-    [list contents of jar param] \
+jar --list \
+    --verbose \
     --file=mlib/com.greetings.jar
 
 # Run 'jar --help' and 'jar --help-extra' to learn about all the above parameters used to create package files (jar) and also read their descriptions

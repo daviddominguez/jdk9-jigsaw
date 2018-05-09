@@ -13,7 +13,8 @@ runTree src
 echo ""
 echo "${info} *** Compiling both modules into the '$DESTINATION_FOLDER' folder *** ${normal}"
 javac -d $DESTINATION_FOLDER \
-      [parameter to point to the folder with source files in a module] src $(find . -name "*.java")
+    --module-source-path src $(find src -name "*.java")
+    # [parameter to point to the folder with source files in a module] src $(find . -name "*.java")
 
 #
 # * look for tool references, quick started guides, and other documentation in the Java 9 Resource (https://github.com/AdoptOpenJDK/jdk9-jigsaw/blob/master/Java-9-Resources.md).
